@@ -2,3 +2,28 @@ This is your new Play application
 =================================
 
 This file will be packaged with your application, when using `activator dist`.
+
+playframework2.4에서 jdbc로 DB  연결 하는  예제입니다.
+
+이걸 작성하게 된 계기는 db연결이 되는지 확인하기 위해서입니다.
+
+
+라즈베리파이에서 slick 3.0을 썼을 때 타이아웃이 나는 오류가 있어서 확인하려고 
+JDBC로 연결하는 이 샘플코드를 만들었습니다.
+
+playframework 2.4 에서 DB는  mysql 이었구요.
+JDBC는 되고 slick3.0은  DB접속이 되지 않았었습니다. 
+
+
+
+그래서 해당 내용을 playframework에 리포팅 했습니다.
+개발자가 답변을 달아줬는데요.
+
+slick 3.0의 디폴트 컨넥션 타임아웃 값이 1초인데.
+연결하는데 1초이상 걸린것 같다고 application.conf에 
+
+slick.dbs.default.db.connectionTimeout = 30s
+
+를 추가하라구요
+추가하니 정상동작 하더군요.
+
